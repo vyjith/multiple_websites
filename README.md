@@ -8,6 +8,30 @@ Mutiple website hosting at simple steps
 
 This is a simple multiple website creating scripts using bash script and this is very helphul for you, I belive. 
 
+## Pre-Requestes (Packages Installation)
+-------------------------------------------------- 
+
+```sh
+sudo yum -y install git 
+
+```
+## How to use this script
+-------------------------------------------------- 
+```sh 
+
+git clone https://github.com/vyjith/multiple_websites.git
+
+cd multiple_websites/
+
+chmod +x multiple_website.sh
+```
+## Script running
+-------------------------------------------------- 
+```sh
+bash multiple_website.sh
+
+```
+
 ## Source code
 ```sh
 #! /bin/bash
