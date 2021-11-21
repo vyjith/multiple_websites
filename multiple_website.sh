@@ -175,8 +175,9 @@ EOF
 echo ""
 echo "Restart httpd service and you can check the website on this URL: http://$domainfirsts &&  http://$domainseconds && http://$domainthird after adding the hosts file on your local machine"
 service httpd restart
+echo ""
 echo "The  website is ready and please visit the URL : http://$domainfirsts && http://$domainseconds && http://$domainthird"
-echo "
+echo ""
 }
 
 w_main(){
