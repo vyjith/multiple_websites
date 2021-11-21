@@ -99,7 +99,7 @@ echo "Installing httpd service"
         yum install httpd -y
         service httpd restart
 echo "Please enter the first website name"
-read -p "NOTE: Use lowercase letter and don't use symbols like($,/,*,&,......):" domainfirst
+read -p "NOTE: Use lowercase letter and don't use symbols like($,/,*,&,......):" domainfirsts
 mkdir -p /var/www/html/$domainfirsts
 cat > /var/www/html/$domainfirsts/index.html << EOF
 Hello World!
