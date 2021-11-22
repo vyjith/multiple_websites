@@ -1,7 +1,7 @@
 #! /bin/bash
 
 w_root(){
-if [ "$EUID" == 0 ]
+if [ "$EUID" == 0 ];
 then
         w_install
 else
@@ -26,14 +26,17 @@ case $Answer in
                 w_onewebsite
         ;;
         2)      w_install_httpd
+                echo ""
                 echo -n "Please let me know how many website you would like to host: "
                 read y
                 x=1
-                while [ $x -le $y ]
+                while [ "$x" -le "$y" ]
                 do
                         w_morethanwebsites
                         x=$(( $x +1 ))
                 done
+                echo ""
+                w-restart
         ;;
         *)
                 echo "You have entered invalid option"
@@ -42,10 +45,21 @@ esac
 }
 
 w_install_httpd(){
+echo ""
+echo "Please hold a moment, while checking the required packages installed or not on the server"
+echo ""
+status="`systemctl show -p ActiveState httpd | sed 's/ActiveState=//g'`"
+if [ "$status" = "active" ];
+then
+        echo ""
+        echo "The required packages has been already installed on the server"
+        echo ""
+else
 echo "Installing httpd service"
         yum install httpd -y
         service httpd restart
 echo ""
+fi
 }
 
 w_onewebsite(){
@@ -53,6 +67,13 @@ echo ""
 echo "Please enter the website name"
 echo ""
 read -p "NOTE: Use lowercase letter and don't use symbols like($,/,*,&,......):" domainone
+if [ -e /var/www/html/$domainone ];
+then
+        echo ""
+        echo "The mentioned domain is already exist on the server"
+        echo ""
+        exit 1
+else
 mkdir -p /var/www/html/$domainone
 cat > /var/www/html/$domainone/index.html << EOF
 Hello World!
@@ -73,6 +94,7 @@ service httpd restart
 echo ""
 echo "The  website is ready and please visit the URL : http://$domainone"
 echo ""
+fi
 }
 
 w_morethanwebsites(){
@@ -80,6 +102,13 @@ echo ""
 echo "Please enter the "$x" website name"
 echo ""
 read -p "NOTE: Use lowercase letter and don't use symbols like($,/,*,&,......):" domainone
+if [ -e /var/www/html/$domainone ]
+then
+        echo ""
+        echo "The mentioned domain is already exist on the server"
+        echo ""
+        exit 1
+else
 mkdir -p /var/www/html/$domainone
 cat > /var/www/html/$domainone/index.html << EOF
 Hello World!
@@ -95,10 +124,18 @@ ServerAlias $domainone
 </VirtualHost>
 EOF
 echo ""
-echo "Restart httpd service and you can check the website on this URL: http://$domainone after adding the hosts file on your local machine"
-service httpd restart
+echo "You can check the website after adding the hosts file on your local machine"
 echo ""
 echo "The  website is ready and please visit the URL : http://$domainone"
+echo ""
+fi
+}
+w-restart(){
+echo ""
+echo "Restarting the httpd service"
+service httpd restart
+echo ""
+echo "httpd resatrted and now you can visit your websites. Thank you and Enjoy : )"
 echo ""
 }
 
