@@ -6,7 +6,7 @@ Mutiple website hosting at simple steps
 # Description
 -------------------------------------------------- 
 
-This is a simple bash script that creates several websites, and I believe it will be extremely useful to you.
+This is a simple bash script that creates several websites, and I believe it will be extremely useful to you. If you need to host many websites on an one Amazon EC2 instance, you may use this script to accomplish it. 
 
 ## Pre-Requestes (Packages Installation)
 -------------------------------------------------- 
