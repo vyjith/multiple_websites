@@ -6,7 +6,7 @@ Mutiple website hosting at simple steps
 # Description
 -------------------------------------------------- 
 
-This is a simple multiple website creating scripts using bash script and this is very helphul for you, I belive. 
+This is a simple bash script that creates several websites, and I believe it will be extremely useful to you.
 
 ## Pre-Requestes (Packages Installation)
 -------------------------------------------------- 
