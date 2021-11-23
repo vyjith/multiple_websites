@@ -60,6 +60,7 @@ case $Answer in
                 echo "You have selected one website. Please hold a moment whle creating one webiste for you"
                 w_install_httpd
                 w_onewebsite
+                w-restart
         ;;
         2)      w_install_httpd
                 echo ""
